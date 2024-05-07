@@ -27,6 +27,6 @@ fi
 
 # Download the models and store in /models
 getFromServer "models/" "rembg-models.zip" "models" "Downloading Background Remover models..."
-apt install libnvinfer-dev python3-libnvinfer-dev
+apt install python3-libnvinfer
 # TODO: Check models created and has files
 # module_install_errors=...
