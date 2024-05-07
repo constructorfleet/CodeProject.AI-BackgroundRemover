@@ -87,7 +87,14 @@ RULES AND CONVENTIONS
                     onchange="return previewImage(this)" />
             <input class="form-control btn-success" type="button" value="Remove Background"
                     style="width:11rem" id="_MID_removeBackground"
-                    onclick="_MID_onRemoveBackground(_MID_removeBgInput, _MID_use_alphamatting.checked)" />
+                    onclick="_MID_onRemoveBackground(_MID_removeBgInput, _MID_model.value, _MID_use_alphamatting.checked)" />
+	</div>
+        <div class="form-group row mt-1 justify-content-end">
+                <label for="_MID_model">Model</label>
+               <select id="_MID_model" class="form-select" style="width:10rem">
+                 <option value="u2net">U2Net</option>
+                 <option value="is_general_use">IS General Use</option>
+               </select>
         </div>
         <div class="form-group row mt-1 justify-content-end">
             <div class="checkbox checkbox-primary col-4">
@@ -112,7 +119,7 @@ RULES AND CONVENTIONS
     <script type="text/javascript">
 // START EXPLORER SCRIPT
 
-		async function _MID_onRemoveBackground(fileChooser, use_alphamatting) {
+		async function _MID_onRemoveBackground(fileChooser, model, use_alphamatting) {
 
 			clearImagePreview();
 
@@ -123,7 +130,7 @@ RULES AND CONVENTIONS
 
 			previewImage(fileChooser);
 			let images = [fileChooser.files[0]];
-			let params = [["use_alphamatting", use_alphamatting]]
+			let params = [["use_alphamatting", use_alphamatting], ["model", model]]
 
 			setResultsHtml("Removing background...");
 			let data = await submitRequest('image', 'removebackground', images, params);
