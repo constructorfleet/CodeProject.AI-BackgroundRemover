@@ -21,7 +21,7 @@
       "LaunchSettings": {
         "AutoStart": false,
         "FilePath": "rembg_adapter.py",
-        "Runtime": "python3.9",
+        "Runtime": "python3.10",
         "RuntimeLocation": "Local",     // Can be Local, Shared or System
         /* Alternatively: "Command": "%RUNTIMES_PATH%\\bin\\windows\\python39\\venv\\Scripts\\python", */
         "PostStartPauseSecs": 0,        // Generally 1 if using GPU, 0 for CPU
@@ -33,7 +33,7 @@
       },
  
       "GpuOptions" : {
-        "InstallGPU": false,            // GPU support not provided
+        "InstallGPU": true,            // GPU support not provided
         "EnableGPU": true,              // Will be coerced to false if InstallGPU = false
         "AcceleratorDeviceName": null,  // = default
         "HalfPrecision": "enable"       // 'Force', 'Enable', 'Disable': whether to force on, allow, or disable half-precision ops
