@@ -11,6 +11,7 @@ import onnxruntime as ort
 from .session_base import BaseSession
 from .session_cloth import ClothSession
 from .session_simple import SimpleSession
+from .session_dis_general_use import DisSession
 
 
 def new_session(model_name: str) -> BaseSession:
@@ -32,6 +33,10 @@ def new_session(model_name: str) -> BaseSession:
         md5 = "2434d1f3cb744e0e49386c906e5a08bb"
         url = "https://drive.google.com/uc?id=15rKbQSXQzrKCQurUjZFg8HqzZad8bcyz"
         session_class = ClothSession
+    elif model_name == "is_general_use":
+        md5 = "fc16ebd8b0c10d971d3513d564d01e29"
+        url = "https://github.com/danielgatis/rembg/releases/download/v0.0.0/isnet-general-use.onnx"
+        session_class = DisSession
     else:
         assert AssertionError(
             "Choose between u2net, u2netp, u2net_human_seg or u2net_cloth_seg"
