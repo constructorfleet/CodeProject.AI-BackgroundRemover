@@ -47,10 +47,11 @@ class rembg_adapter(ModuleRunner):
         try:
             img: Image             = data.get_image(0)
             use_alphamatting: bool = data.get_value("use_alphamatting", "false") == "true"
+            model: str             = data.get_value("model", "u2net")
 
             # Make the call to the AI code we're wrapping, and time it
             start_time = time.perf_counter()
-            (processed_img, inferenceTime) = remove(img, use_alphamatting)
+            (processed_img, inferenceTime) = remove(img, use_alphamatting, model=model)
             processMs = int((time.perf_counter() - start_time) * 1000)
 
             response = { 
@@ -78,6 +79,7 @@ class rembg_adapter(ModuleRunner):
         request_data.command = "removebackground"
         request_data.add_file(file_name)
         request_data.add_value("use_alphamatting", "true")
+        request_data.add_value("model", "u2net")
 
         result = self.process(request_data)
         print(f"Info: Self-test for {self.module_id}. Success: {result['success']}")
