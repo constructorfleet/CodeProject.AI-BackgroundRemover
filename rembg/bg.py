@@ -88,6 +88,7 @@ def remove(
     alpha_matting_erode_size: int = 10,
     session: Optional[BaseSession] = None,
     only_mask: bool = False,
+    model: str = "u2net",
 ) -> Tuple[Union[bytes, PILImage, np.ndarray], int]:
 
     if isinstance(data, PILImage):
@@ -103,7 +104,7 @@ def remove(
         raise ValueError("Input type {} is not supported.".format(type(data)))
 
     if session is None:
-        session = new_session("u2net")
+        session = new_session(model)
 
     start_time = time.perf_counter()
     masks = session.predict(img)
